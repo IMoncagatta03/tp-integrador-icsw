@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+:root {
+  /* Fondo general claro y texto oscuro para accesibilidad */
+  --background: #f4f6f8;
+  --foreground: #1f2937;
+}
+
+@theme {
+  /* Colores del sistema */
+  --color-slate-50: #f9fafb;
+  --color-slate-100: #1f2937;
+  --color-slate-200: #111827;
+  --color-slate-300: #374151;
+  --color-slate-400: #4b5563;
+  --color-slate-500: #6b7280;
+  --color-slate-600: #9ca3af;
+  --color-slate-700: #d1d5db;
+  --color-slate-800: #e2e8f0;
+  --color-slate-900: #ffffff;
+  --color-slate-950: #f4f6f8;
+
+  /* Gradiente naranja */
+  --color-indigo-50: #fff5f0;
+  --color-indigo-100: #ffe5d6;
+  --color-indigo-200: #b23b0d;
+  --color-indigo-300: #ff9e74;
+  --color-indigo-400: #e05315;
+  --color-indigo-500: #f16522;
+  --color-indigo-600: #d04f14;
+  --color-indigo-700: #ad3d0e;
+  --color-indigo-800: #8c300c;
+  --color-indigo-900: #70260b;
+  --color-indigo-950: #4d1502;
+
+
+  --color-purple-500: #d81b60;
+  --color-purple-600: #b00f4e;
+
+
+  --color-emerald-400: #059669;
+  --color-emerald-500: #047857;
+  --color-teal-500: #0f766e;
+  --color-amber-400: #d97706;
+  --color-amber-500: #b45309;
+  --color-rose-400: #dc2626;
+  --color-rose-500: #b91c1c;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Cursor pointer para botones y elementos interactivos cliqueables */
+button,
+[role="button"],
+input[type="button"],
+input[type="submit"] {
+  cursor: pointer;
+}
+
+/* Cursor not-allowed para botones deshabilitados */
+button:disabled,
+[role="button"][aria-disabled="true"],
+input[type="button"]:disabled,
+input[type="submit"]:disabled {
+  cursor: not-allowed;
+}
