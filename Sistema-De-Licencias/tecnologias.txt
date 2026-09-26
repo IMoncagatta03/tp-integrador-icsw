@@ -1,0 +1,49 @@
+================================================================================
+                    TECNOLOGÍAS Y ARQUITECTURA DEL PROYECTO
+================================================================================
+
+Este proyecto es una aplicación web full-stack diseñada para la gestión de 
+licencias de conducir de la Municipalidad de Santa Fe. Está compuesto por un 
+backend en Java y un frontend en Next.js.
+
+A continuación se detallan las tecnologías y herramientas utilizadas:
+
+--------------------------------------------------------------------------------
+1. BACKEND (sistema_licencias)
+--------------------------------------------------------------------------------
+* Lenguaje: Java (versión compatible: Java 17 o superior).
+* Framework Principal: Spring Boot 4.0.6
+* Módulos de Spring:
+  - Spring Boot Starter Web (para la creación de APIs REST y controladores).
+  - Spring Boot Starter Data JPA (para la persistencia y mapeo objeto-relacional).
+  - Spring Boot Starter Validation (para validaciones automáticas en los DTOs de entrada).
+  - Spring Boot DevTools (para recarga en caliente durante desarrollo).
+* Seguridad y Criptografía: jBCrypt 0.4 (utilizado para el hashing de contraseñas de usuarios).
+* Gestor de Dependencias y Construcción: Apache Maven (usando el Maven Wrapper `mvnw.cmd`).
+* ORM / Persistencia: Hibernate (manejando relaciones como OneToMany, ManyToOne, etc.).
+
+--------------------------------------------------------------------------------
+2. BASE DE DATOS
+--------------------------------------------------------------------------------
+* Motor de Base de Datos: PostgreSQL (versión en ejecución: PostgreSQL 18).
+* Acceso a Datos: Driver JDBC de PostgreSQL.
+* Estrategia de Base de Datos: 
+  - Mapeo de Enums nativos de PostgreSQL (tipo_rol, clase_licencia, tipo_tramite, estado_licencia)
+    directamente a Enums de Java mediante anotaciones `@Enumerated` y `@JdbcTypeCode`.
+  - Creación de índices específicos de unicidad para evitar licencias vigentes duplicadas
+    por titular y clase.
+
+--------------------------------------------------------------------------------
+3. FRONTEND (front-next)
+--------------------------------------------------------------------------------
+* Framework: Next.js 16.2.6 (con Turbopack habilitado para máxima velocidad de desarrollo).
+* Lenguaje: TypeScript y React.
+* Estilado (Aesthetics):
+  - Tailwind CSS (para el diseño responsivo, animaciones y paleta de colores moderna).
+  - Lucide React (librería para la iconografía premium y limpia).
+* Gestión de Estado y Sesión:
+  - React Context API (`AuthContext.tsx`) para gestionar el estado de autenticación
+    del operador administrativo a lo largo de toda la aplicación.
+  - Comunicación con el Backend a través del API Fetch de JavaScript.
+
+================================================================================

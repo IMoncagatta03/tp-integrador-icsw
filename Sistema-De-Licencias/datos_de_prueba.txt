@@ -1,0 +1,169 @@
+-- ================================================================================
+--           DATOS DE PRUEBA PARA EL SISTEMA DE LICENCIAS DE CONDUCIR
+-- ================================================================================
+--
+-- A continuación se detallan los titulares precargados en la base de datos para
+-- facilitar las pruebas del sistema. Se incluyen las edades calculadas y el historial
+-- de licencias de cada uno para validar los casos de vigencia y restricciones.
+--
+-- --------------------------------------------------------------------------------
+-- 1. JUAN IGNACIO PEREZ (Menor de 21 años, primera vez)
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 50123456
+-- * Fecha de Nacimiento: 15/06/2008 (18 años)
+-- * Dirección: San Martin 1234
+-- * Grupo y Factor Sanguíneo: A+
+-- * Donante de órganos: No
+-- * Historial de Licencias: Ninguno (Primera vez)
+-- * Caso de Uso esperado: Al emitirle una licencia por primera vez, su vigencia
+--   debería ser de 1 año.
+--
+-- --------------------------------------------------------------------------------
+-- 2. SOFIA VALENTINA RODRIGUEZ (Menor de 21 años, con licencia previa)
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 49765432
+-- * Fecha de Nacimiento: 10/03/2007 (19 años)
+-- * Dirección: Bv. Pellegrini 2500
+-- * Grupo y Factor Sanguíneo: O-
+-- * Donante de órganos: Sí
+-- * Historial de Licencias: Clase A (Emitida 10/03/2024, Vencida 10/03/2025)
+-- * Caso de Uso esperado: Como ya tuvo una licencia de la misma clase, al emitirle
+--   nuevamente la Clase A, debería otorgarle una vigencia de 3 años ("siguientes veces").
+--
+-- --------------------------------------------------------------------------------
+-- 3. CARLOS ALBERTO BIANCHI (Adulto, con antigüedad Clase B)
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 39111222
+-- * Fecha de Nacimiento: 22/09/1995 (30 años)
+-- * Dirección: Urquiza 3421
+-- * Grupo y Factor Sanguíneo: B+
+-- * Donante de órganos: Sí
+-- * Historial de Licencias: Clase B (Vigente desde 22/09/2024 hasta 22/09/2029)
+-- * Caso de Uso esperado: Al tener una licencia Clase B con al menos 1 año de antigüedad,
+--   cumple los requisitos para poder emitirle licencias profesionales (C, D, E).
+--
+-- --------------------------------------------------------------------------------
+-- 4. MARIA LUZ GOMEZ (Adulto, sin antigüedad Clase B)
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 43222333
+-- * Fecha de Nacimiento: 05/01/2001 (25 años)
+-- * Dirección: San Jeronimo 1800
+-- * Grupo y Factor Sanguíneo: AB+
+-- * Donante de órganos: No
+-- * Historial de Licencias: Ninguno
+-- * Caso de Uso esperado: Si se le intenta emitir una licencia profesional (C, D, E),
+--   el sistema debe arrojar un error ("Debe poseer licencia Clase B con un año de antigüedad mínimo").
+--
+-- --------------------------------------------------------------------------------
+-- 5. ROBERTO FONTANARROSA (Mayor de 65 años, con antecedentes profesionales)
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 12444555
+-- * Fecha de Nacimiento: 26/11/1957 (68 años)
+-- * Dirección: Las Heras 4500
+-- * Grupo y Factor Sanguíneo: O+
+-- * Donante de órganos: Sí
+-- * Historial de Licencias: Clase C (Emitida 26/11/2020, Vencida 26/11/2023)
+-- * Caso de Uso esperado: Aunque tiene más de 65 años, como ya poseía una licencia
+--   profesional (Clase C), se le puede otorgar una nueva licencia profesional (no es su primera vez).
+--
+-- --------------------------------------------------------------------------------
+-- 6. NORMA BEATRIZ PLA (Mayor de 65 años, sin antecedentes profesionales)
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 13999000
+-- * Fecha de Nacimiento: 15/08/1958 (67 años)
+-- * Dirección: 25 de Mayo 3100
+-- * Grupo y Factor Sanguíneo: A-
+-- * Donante de órganos: Sí
+-- * Historial de Licencias: Ninguno
+-- * Caso de Uso esperado: Al intentar emitirle una licencia profesional por primera vez
+--   teniendo más de 65 años, el sistema debe denegarlo con un error.
+--
+-- --------------------------------------------------------------------------------
+-- 7. ESTANISLAO RAMON LOPEZ
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 28555666
+-- * Fecha de Nacimiento: 15/02/1981 (45 años)
+-- * Dirección: General Lopez 1100
+-- * Grupo y Factor Sanguíneo: B-
+-- * Donante de órganos: No
+-- * Historial de Licencias: Ninguno
+--
+-- --------------------------------------------------------------------------------
+-- 8. LIONEL ANDRES MESSI
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 33010010
+-- * Fecha de Nacimiento: 24/06/1987 (38 años)
+-- * Dirección: Rosario 1010
+-- * Grupo y Factor Sanguíneo: A+
+-- * Donante de órganos: Sí
+-- * Historial de Licencias: Ninguno
+--
+-- --------------------------------------------------------------------------------
+-- 9. DIEGO ARMANDO MARADONA
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 14101010
+-- * Fecha de Nacimiento: 30/10/1965 (60 años)
+-- * Dirección: Fiorito 1960
+-- * Grupo y Factor Sanguíneo: O+
+-- * Donante de órganos: Sí
+-- * Historial de Licencias: Clase B (Emitida 30/10/2020, Vencida 30/10/2024)
+--
+-- --------------------------------------------------------------------------------
+-- 10. JUANA PAULA AZURDUY
+-- --------------------------------------------------------------------------------
+-- * Tipo y N° de Documento: DNI 45111222
+-- * Fecha de Nacimiento: 12/07/2003 (22 años)
+-- * Dirección: Suipacha 900
+-- * Grupo y Factor Sanguíneo: AB-
+-- * Donante de órganos: Sí
+-- * Historial de Licencias: Ninguno
+-- ================================================================================
+
+-- 1. CARGA DE TITULARES
+INSERT INTO titulares (id, tipo_documento, numero_documento, apellido, nombre, fecha_nacimiento, direccion, grupo_sanguineo, factor_rh, donante_organos) VALUES
+(1, 'DNI', '50123456', 'PEREZ', 'JUAN IGNACIO', '2008-06-15', 'San Martin 1234', 'A', '+', FALSE),
+(2, 'DNI', '49765432', 'RODRIGUEZ', 'SOFIA VALENTINA', '2007-03-10', 'Bv. Pellegrini 2500', 'O', '-', TRUE),
+(3, 'DNI', '39111222', 'BIANCHI', 'CARLOS ALBERTO', '1995-09-22', 'Urquiza 3421', 'B', '+', TRUE),
+(4, 'DNI', '43222333', 'GOMEZ', 'MARIA LUZ', '2001-01-05', 'San Jeronimo 1800', 'AB', '+', FALSE),
+(5, 'DNI', '12444555', 'FONTANARROSA', 'ROBERTO', '1957-11-26', 'Las Heras 4500', 'O', '+', TRUE),
+(6, 'DNI', '13999000', 'PLA', 'NORMA BEATRIZ', '1958-08-15', '25 de Mayo 3100', 'A', '-', TRUE),
+(7, 'DNI', '28555666', 'LOPEZ', 'ESTANISLAO RAMON', '1981-02-15', 'General Lopez 1100', 'B', '-', FALSE),
+(8, 'DNI', '33010010', 'MESSI', 'LIONEL ANDRES', '1987-06-24', 'Rosario 1010', 'A', '+', TRUE),
+(9, 'DNI', '14101010', 'MARADONA', 'DIEGO ARMANDO', '1965-10-30', 'Fiorito 1960', 'O', '+', TRUE),
+(10, 'DNI', '45111222', 'AZURDUY', 'JUANA PAULA', '2003-07-12', 'Suipacha 900', 'AB', '-', TRUE),
+(11, 'DNI', '37222888', 'MARTINEZ', 'EMILIANO DIBU', '1992-09-02', 'Mar del Plata 742', 'O', '+', TRUE),
+(12, 'DNI', '40555999', 'MARTINEZ', 'LAUTARO TORO', '1997-08-22', 'Bahia Blanca 890', 'B', '-', TRUE),
+(13, 'DNI', '33444555', 'DI MARIA', 'ANGEL FABIAN', '1988-02-14', 'Rosario Central 1988', 'A', '-', FALSE),
+(14, 'DNI', '38111222', 'DE PAUL', 'RODRIGO JAVIER', '1994-05-24', 'Sarandi 420', 'O', '-', TRUE),
+(15, 'DNI', '42555666', 'ALVAREZ', 'JULIAN ARAÑA', '2000-01-31', 'Calchin 110', 'AB', '+', TRUE),
+(16, 'DNI', '3111222', 'LEGRAND', 'MIRTHA ROSA', '1927-02-23', 'Av. del Libertador 4000', 'A', '+', TRUE),
+(17, 'DNI', '2222333', 'BALA', 'CARLOS SEYDE', '1925-08-13', 'Av. Corrientes 1500', 'O', '+', FALSE),
+(18, 'DNI', '27111222', 'ROSSI', 'VALENTINO MOTOR', '1979-02-16', 'Tavullia 46', 'B', '+', TRUE),
+(19, 'DNI', '21333444', 'BELGRANO', 'MANUEL CLAUDIO', '1970-06-03', 'Av. Belgrano 100', 'A', '-', TRUE),
+(20, 'DNI', '13555666', 'SAN MARTIN', 'JOSE DE FRANCISCO', '1958-02-25', 'Yapeyu 1812', 'O', '+', TRUE),
+(21, 'DNI', '15222333', 'SARMIENTO', 'DOMINGO FAUSTINO', '1962-02-15', 'San Juan 300', 'AB', '-', FALSE);
+
+-- Ajustar la secuencia de IDs de titulares
+SELECT setval('titulares_id_seq', (SELECT MAX(id) FROM titulares));
+
+-- 2. CARGA DE HISTORIAL DE LICENCIAS PREVIAS
+INSERT INTO licencias (id, titular_id, clase, fecha_inicio, fecha_vencimiento, observaciones, estado) VALUES
+(1, 2, 'A', '2024-03-10', '2025-03-10', 'Licencia previa Clase A vencida', 'EXPIRADA'),
+(2, 3, 'B', '2024-09-22', '2029-09-22', 'Licencia previa Clase B vigente', 'VIGENTE'),
+(3, 5, 'C', '2020-11-26', '2023-11-26', 'Licencia previa Clase C vencida', 'EXPIRADA'),
+(4, 9, 'B', '2020-10-30', '2024-10-30', 'Licencia previa Clase B vencida', 'EXPIRADA'),
+(5, 11, 'B', '2018-09-02', '2023-09-02', 'Licencia previa Clase B expirada', 'EXPIRADA'),
+(6, 11, 'A', '2019-10-02', '2024-10-02', 'Licencia previa Clase A expirada', 'EXPIRADA'),
+(7, 16, 'B', '2015-02-23', '2016-02-23', 'Licencia antigua de Mirtha Legrand', 'EXPIRADA'),
+(8, 17, 'B', '2010-08-13', '2011-08-13', 'Licencia antigua de Carlitos Bala', 'EXPIRADA'),
+(9, 20, 'B', '2023-02-25', '2026-02-25', 'Licencia Clase B previa', 'EXPIRADA'),
+(10, 20, 'C', '2024-02-25', '2027-02-25', 'Licencia Clase C vigente', 'VIGENTE');
+
+-- Ajustar la secuencia de IDs de licencias
+SELECT setval('licencias_id_seq', (SELECT MAX(id) FROM licencias));
+
+-- 3. CARGA DE USUARIOS ADICIONALES (contraseña para todos: admin)
+INSERT INTO usuarios (username, password_hash, apellido, nombre, rol, activo) VALUES
+('marta_op', '$2a$10$D4OLKI6yyHNzzIyvLRK4P.c.jP8G.qfJd0H2a9V.E6w9O.eS4P2yO', 'Gomez', 'Marta', 'ADMINISTRATIVO', TRUE),
+('lucas_op', '$2a$10$D4OLKI6yyHNzzIyvLRK4P.c.jP8G.qfJd0H2a9V.E6w9O.eS4P2yO', 'Rodriguez', 'Lucas', 'ADMINISTRATIVO', TRUE),
+('sofia_op', '$2a$10$D4OLKI6yyHNzzIyvLRK4P.c.jP8G.qfJd0H2a9V.E6w9O.eS4P2yO', 'Lopez', 'Sofia', 'ADMINISTRATIVO', TRUE);
