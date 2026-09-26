@@ -1,0 +1,25 @@
+name: Integracion Continua WMS-TMS
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar el codigo (Checkout)
+      uses: actions/checkout@v3
+
+    - name: Configurar Java JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Compilar el proyecto con Maven
+      run: mvn -B package --file pom.xml
