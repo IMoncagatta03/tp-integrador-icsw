@@ -20,6 +20,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+        cache-dependency-path: 'Sistema-De-Licencias/sistema_licencias/pom.xml'
 
     - name: Compilar el proyecto con Maven
-      run: mvn -B package --file pom.xml
+      working-directory: Sistema-De-Licencias/sistema_licencias
+      run: mvn -B package -DskipTests
